@@ -1,0 +1,5 @@
+# Root folder of dataset
+data_root: ./data
+
+# Work folder for trained models, inference results, evaluation output
+work_folder: ./workfolder

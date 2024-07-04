@@ -1,0 +1,6 @@
+_target_: anfsd.classification.models.anfnet.ANFNet
+n_filt: 10
+
+kernel_size: 16
+num_channels: 2
+

@@ -1,0 +1,2 @@
+_target_: anfsd.classification.models.vggsiren.VGGSiren
+num_filters: [8, 16, 32]

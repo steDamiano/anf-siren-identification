@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "anfsd"
+version = "0.1.0"
+description = "Codebase for Frequency Tracking Features for Data-Efficient Deep Siren Identification"
+authors = [
+    "Stefano Damiano <stefano.damiano@esat.kuleuven.be>", 
+    "Thomas Dietzen <thomas.dietzen@esat.kuleuven.be>"
+]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+numpy = "^1.26.4"
+scipy = "^1.12.0"
+torch = "^2.2.1"
+soundfile = "^0.12.1"
+pandas = "^2.2.1"
+matplotlib = "^3.8.3"
+lightning = "^2.2.1"
+python-dotenv = "^1.0.1"
+hydra-core = "^1.3.2"
+coolname = "^2.2.0"
+neptune = {version = "^1.9.1", optional = true}
+torchaudio = "^2.2.1"
+torchmetrics = "^1.3.1"
+
+[tool.poetry.extras]
+neptune = ["neptune"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

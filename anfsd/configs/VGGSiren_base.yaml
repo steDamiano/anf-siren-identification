@@ -1,0 +1,71 @@
+defaults:
+  - env: local
+  - model: VGGSiren
+
+train_dataset_name: sireNNet
+val_dataset_name: sireNNet
+test_dataset_name: sireNNet
+
+training:
+  tags: [VGGSiren, train]
+  
+  alias: 
+  output_folder: ${env.work_folder}/models/${training.alias}
+
+  seed: 42
+  batch_size: 16
+  num_workers: 8
+
+  learning_rate: 0.001
+
+  train_dataset:
+    _target_: anfsd.classification.dataset.SirenDataset
+    root: ${env.data_root}/${train_dataset_name}
+    index: ${env.data_root}/${train_dataset_name}/metadata/train.csv
+    segment_duration: 2
+    sample_rate: 16000
+    split: 4
+    fold: 0
+      
+  val_dataset:
+    _target_: anfsd.classification.dataset.SirenDataset
+    root: ${env.data_root}/${val_dataset_name}
+    index: ${env.data_root}/${val_dataset_name}/metadata/val.csv
+    segment_duration: ${training.train_dataset.segment_duration}
+
+  trainer:
+    max_epochs: 400
+    log_every_n_steps: 11
+    accelerator: cpu
+
+  callbacks:
+    early_stopping:
+      monitor: val/loss_epoch
+      verbose: true
+      patience: 40
+    
+    model_checkpoint:
+      monitor: val/loss_epoch
+      verbose: true
+      save_last: true
+      filename: best
+      dirpath: ${training.output_folder}/checkpoints/
+
+inference:
+    accelerator: cpu
+    alias: ${training.alias}
+
+    batch_size: 32
+    num_workers: 8
+    split: test
+
+    dataset:
+      _target_: anfsd.classification.dataset.SirenDataset
+      root: ${env.data_root}/${test_dataset_name}
+      index: ${env.data_root}/${test_dataset_name}/metadata/${inference.split}.csv
+      segment_duration: ${training.train_dataset.segment_duration}
+
+    output_path: ${env.work_folder}/${inference.alias}/inference/${test_dataset_name}/${inference.split}.csv
+
+evaluation:
+    output_path: ${env.work_folder}/${inference.alias}/evaluation/${test_dataset_name}/${inference.split}.csv
