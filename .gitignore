@@ -4,3 +4,4 @@ workfolder/
 .neptune/
 outputs/
 data/
+*.wav
