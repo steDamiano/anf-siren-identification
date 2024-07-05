@@ -35,5 +35,34 @@ This work relies on publicly available data:
 - [sireNNet dataset](https://data.mendeley.com/datasets/j4ydzzv4kb/1)
 - [LSSiren dataset](https://figshare.com/articles/media/Large-Scale_Audio_Dataset_for_Emergency_Vehicle_Sirens_and_Road_Noises/19291472)
 
+To correctly use the metadata, define a root data directory `data_root` and do as follows:
+- Download the original sireNNet and LSSiren datasets from the provided link
+- Unzip the files, resample to 16kHz
+- Organize the file according to the following structure (keep the metadata folders as they are provided):
+
+```
+data_root/
+├── LSSiren/
+│   ├── metadata/
+│   │   └── provided metadata files
+│   └── resampled/
+│       └── Audio/
+│           ├── noise/
+│           │   └── noise samples go here
+│           └── siren/
+│               └── siren samples go here
+└── sireNNet/
+    ├── metadata/
+    │   └── provided metadata files
+    └── resampled/
+        └── Audio/
+            ├── noise/
+            │   └── 'traffic' samples go here
+            └── siren/
+                └── 'ambulance', 'police' and 'firetruck' samples go here
+```
+
+Set the correct data root path in the `configs/env/local.yaml` config file.
+
 ## Acknowledgment
 This project has received funding from the European Union’s Horizon 2020 research and innovation programme under the Marie Skłodowska-Curie grant agreement No. 956962, from KU Leuven internal funds C3/23/056, and from FWO Research Project G0A0424N. This paper reflects only the authors’ views and the Union is not liable for any use that may be made of the contained information.
