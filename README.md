@@ -35,5 +35,7 @@ This work relies on publicly available data:
 - [sireNNet dataset](https://data.mendeley.com/datasets/j4ydzzv4kb/1)
 - [LSSiren dataset](https://figshare.com/articles/media/Large-Scale_Audio_Dataset_for_Emergency_Vehicle_Sirens_and_Road_Noises/19291472)
 
+Metadata for fully reproducing results will be published upon paper acceptance.
+
 ## Acknowledgment
 This project has received funding from the European Union’s Horizon 2020 research and innovation programme under the Marie Skłodowska-Curie grant agreement No. 956962, from KU Leuven internal funds C3/23/056, and from FWO Research Project G0A0424N. This paper reflects only the authors’ views and the Union is not liable for any use that may be made of the contained information.
